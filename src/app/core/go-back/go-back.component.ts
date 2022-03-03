@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./go-back.component.scss'],
 })
 export class GoBackComponent implements OnInit {
+  @Input() goBackVisibleString?: string="Back";
+
   constructor(private location: Location, private router: Router) {}
 
   ngOnInit(): void {}
