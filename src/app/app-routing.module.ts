@@ -3,9 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'user',
     loadChildren: () =>
       import('src/app/features/user/user.module').then((m) => m.UserModule),
+  },
+  {
+    path: '**',
+    redirectTo: 'user',
   },
 ];
 
