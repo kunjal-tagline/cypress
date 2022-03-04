@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./go-back.component.scss'],
 })
 export class GoBackComponent implements OnInit {
-  @Input() goBackVisibleString?: string="Back";
+  @Input() goBackVisibleString?: string = 'Back';
 
   constructor(private location: Location, private router: Router) {}
 
