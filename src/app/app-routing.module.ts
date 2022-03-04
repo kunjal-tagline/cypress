@@ -8,8 +8,15 @@ const routes: Routes = [
       import('src/app/features/user/user.module').then((m) => m.UserModule),
   },
   {
+    path: 'customer',
+    loadChildren: () =>
+      import('src/app/features/customer/customer.module').then(
+        (m) => m.CustomerModule
+      ),
+  },
+  {
     path: '**',
-    redirectTo: 'user',
+    redirectTo: 'customer',
   },
 ];
 
