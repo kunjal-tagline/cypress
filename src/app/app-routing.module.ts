@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'customer',
+    redirectTo: 'user',
   },
 ];
 
