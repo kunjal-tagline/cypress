@@ -1,4 +1,3 @@
-import { UserService } from './../../../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -19,7 +18,7 @@ export class SignUpComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     const emailRegEx: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
@@ -34,7 +33,7 @@ export class SignUpComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.minLength(8),
+          Validators.minLength(5),
           Validators.maxLength(20),
         ]),
       ],
@@ -43,6 +42,5 @@ export class SignUpComponent implements OnInit {
 
   public signUpformSubmit(): void {
     const signUpFormValue = this.signUpForm.value;
-    this.userService.userSignUp(signUpFormValue).subscribe();
   }
 }

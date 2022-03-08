@@ -8,6 +8,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [LoginComponent, SignUpComponent],
-  imports: [CommonModule, UserRoutingModule, FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, UserRoutingModule, FormsModule, ReactiveFormsModule],
 })
 export class UserModule {}

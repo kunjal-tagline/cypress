@@ -5,24 +5,30 @@
                 <p class="p-3">LOG IN</p>
             </div>
             <div class="card-body">
-                <form #loginForm="ngForm" (ngSubmit)="userLogin()">
+                <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
                     <div>
                         <label for="email" class="h5">Email id<i class="text-danger">*</i></label>
-                        <input type="text" class="form-control" id="email" name="email" ngModel required
-                            #email="ngModel" pattern='^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'
+                        <input type="text" class="form-control" id="email" name="email" formControlName="email"
                             placeholder="Enter email id">
-                        <div class="text-danger" *ngIf="email.touched && email.invalid">
-                            <p *ngIf="email.errors?.['required']">Email id is required</p>
-                            <p *ngIf="email.errors?.['pattern']">Email id is invalid</p>
+                        <div class="text-danger"
+                            *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+                            <p *ngIf="loginForm.get('email')?.hasError('required')">Email id is required</p>
+                            <p *ngIf="loginForm.get('email')?.hasError('pattern')">Email id is invalid</p>
                         </div>
                     </div>
                     <div class="mt-3">
                         <label for="password" class="h5">Password<i class="text-danger">*</i></label>
-                        <input type="password" class="form-control" name="password" ngModel required #password="ngModel"
-                            minlength="8" placeholder="Enter password">
-                        <div class="text-danger" *ngIf="password.touched && password.invalid">
-                            <p *ngIf="password.errors?.['required']">Password is required</p>
-                            <p *ngIf="password.errors?.['minlength']">Password must be at least 8 characters long</p>
+                        <input type="password" class="form-control" name="password" formControlName="password"
+                            placeholder="Enter password">
+                        <div class="text-danger"
+                            *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+                            <p *ngIf="loginForm.get('password')?.hasError('required')">Password is required</p>
+                            <p *ngIf="loginForm.get('password')?.hasError('minlength')">
+                                Password must be at least 8 characters long
+                            </p>
+                            <p *ngIf="loginForm.get('password')?.hasError('maxlength')">
+                                Password allows only 20 characters
+                            </p>
                         </div>
                     </div>
                     <div class="mt-2">
