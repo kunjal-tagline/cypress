@@ -6,6 +6,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 })
 export class PracticeCrudService {
   public basePath = this.db.database.ref('/cart');
+
   constructor(private db: AngularFireDatabase) {
     //this.createCartData();
     this.getAllCarts();
@@ -30,11 +31,10 @@ export class PracticeCrudService {
           cartId: key,
         };
       });
-      console.log('allCarts:>> ', allCarts);
     });
   }
 
-  public removeCartData(id: string = '-MxcsuUPcIzadlbYkYrp') {
+  public removeCartData(id: string = '-MxcsuUPcIzadlbYkYrp'):void {
     const basePath = this.db.database.ref('/cart/' + id);
     basePath.remove();
   }
