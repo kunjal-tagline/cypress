@@ -59,7 +59,8 @@
                             formControlName="productDetail" placeholder="Product details">
                         <div class="text-danger"
                             *ngIf="addPoductForm.get('productDetail')?.touched && addPoductForm.get('productDetail')?.invalid">
-                            <p *ngIf="addPoductForm.get('productDetail')?.hasError('required')">Product detail is required
+                            <p *ngIf="addPoductForm.get('productDetail')?.hasError('required')">Product detail is
+                                required
                             </p>
                         </div>
                     </div>

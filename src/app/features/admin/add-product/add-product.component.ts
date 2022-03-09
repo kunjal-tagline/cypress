@@ -1,4 +1,4 @@
-import { AdminService } from './../../../shared/services/admin.service';
+import { AdminService } from 'src/app/shared/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -13,7 +13,6 @@ import {
   styleUrls: ['./add-product.component.scss'],
 })
 export class AddProductComponent implements OnInit {
-  public editProduct!: any;
   public categories: any[] = [
     {
       id: 'Ring',
@@ -46,43 +45,19 @@ export class AddProductComponent implements OnInit {
     productDetail: new FormControl(''),
   });
 
-  constructor(private fb: FormBuilder, private adminService: AdminService) {
-    const products: any = localStorage.getItem('productId');
-    this.editProduct = JSON.parse(products);
-    // console.log('obj :>> ', obj);
-    if(this.editProduct){
-      this.setProductValue()
-    }
-    // console.log(
-    //   'localStorage.getItem(productId) :>> ',
-    //   localStorage.getItem('productId')
-    // );
-  }
+  constructor(private fb: FormBuilder, private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.addPoductForm = this.fb.group({
-      productName: ['product1', Validators.required],
-      productPrice: ['1234', Validators.required],
-      returnTime: ['10', Validators.required],
+      productName: ['', Validators.required],
+      productPrice: ['', Validators.required],
+      returnTime: ['', Validators.required],
       imagePath: ['', Validators.required],
       category: ['', Validators.required],
       productDetail: ['', Validators.required],
     });
   }
 
-  /**
-   * setProductValue
-   */
-  public setProductValue() {
-    this.addPoductForm.setValue({
-      productName: this.editProduct.productName,
-      productPrice: this.editProduct.productPrice,
-      returnTime: this.editProduct.returnTime,
-      imagePath: this.editProduct.imagePath,
-      category: this.editProduct.category,
-      productDetail: this.editProduct.productDetail,
-    });
-  }
   public addProductSubmit(): void {
     this.adminService.addProduct(this.addPoductForm.value);
   }

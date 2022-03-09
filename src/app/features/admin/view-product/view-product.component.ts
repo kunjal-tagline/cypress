@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { AdminService } from './../../../shared/services/admin.service';
+import { AdminService } from 'src/app/shared/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -16,29 +16,20 @@ export class ViewProductComponent implements OnInit {
     this.productListshow();
   }
 
-  /**
-   * productListshow
-   */
   public productListshow(): void {
-    this.adminService.getProductList().then((res) => {
-      this.viewProductList = res;
+    this.adminService.getProductList().then((response: any) => {
+      this.viewProductList = response;
     });
   }
 
-  /**
-   * deleteProduct
-   */
   public deleteProduct(id: string): void {
-    this.adminService.removeproductById(id);
+    this.adminService.removeProductById(id);
+    this.productListshow();
   }
 
-  /**
-   * editProduct
-   */
-
   public editProduct(productDetails: any): void {
-    localStorage.setItem('productId',JSON.stringify(productDetails))
-    const id = productDetails.cartID;
+    localStorage.setItem('productDataToken', JSON.stringify(productDetails));
+    const id = productDetails.cartId;
     this.router.navigate(['/admin/edit-product', id]);
   }
 }
