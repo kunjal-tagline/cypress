@@ -54,6 +54,15 @@
                             Select category
                         </div>
                     </div>
+                    <div class="pt-3">
+                        <input type="text" class="form-control border-primary" id="productDetail" name="productDetail"
+                            formControlName="productDetail" placeholder="Product details">
+                        <div class="text-danger"
+                            *ngIf="addPoductForm.get('productDetail')?.touched && addPoductForm.get('productDetail')?.invalid">
+                            <p *ngIf="addPoductForm.get('productDetail')?.hasError('required')">Product detail is required
+                            </p>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-center mt-5 mb-2">
                         <button class="btn btn-success w-50" type="submit" [disabled]="addPoductForm.invalid">
                             Add</button>

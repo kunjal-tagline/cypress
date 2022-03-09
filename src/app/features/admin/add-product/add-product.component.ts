@@ -1,3 +1,4 @@
+import { AdminService } from './../../../shared/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -41,9 +42,10 @@ export class AddProductComponent implements OnInit {
     returnTime: new FormControl(''),
     imagePath: new FormControl(''),
     category: new FormControl(''),
+    productDetail: new FormControl(''),
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.addPoductForm = this.fb.group({
@@ -52,8 +54,11 @@ export class AddProductComponent implements OnInit {
       returnTime: ['10', Validators.required],
       imagePath: ['', Validators.required],
       category: ['', Validators.required],
+      productDetail: ['', Validators.required],
     });
   }
 
-  public addProductSubmit() {}
+  public addProductSubmit(): void {
+    this.adminService.addProduct(this.addPoductForm.value);
+  }
 }

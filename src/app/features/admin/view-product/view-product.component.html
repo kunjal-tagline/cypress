@@ -1,1 +1,39 @@
-<p>view-product works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="h2 text-center">
+            View products
+        </div>
+        <table class="table table-bordered table-light col-sm-12">
+            <thead>
+                <tr class="bg-secondary h4 text-center">
+                    <th>No.</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Return time</th>
+                    <th>Image</th>
+                    <th>category</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor="let productItem of viewProductList; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{productItem.productName}}</td>
+                    <td>{{productItem.productPrice}}</td>
+                    <td>{{productItem.returnTime}}</td>
+                    <td><img src={{productItem.imagePath}} class="w-25"></td>
+                    <td>{{productItem.category}}</td>
+                    <td>{{productItem.productDetail}}</td>
+                    <td class="text-center">
+                        <p (click)="editProduct(productItem.cartId)"><i class="fa fa-edit fa-2x text-warning"></i></p>
+                    </td>
+                    <td class="text-center">
+                        <p (click)="deleteProduct(productItem.cartId)"><i class="fa fa-trash-o fa-2x text-danger"></i></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
