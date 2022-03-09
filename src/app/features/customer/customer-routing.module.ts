@@ -4,12 +4,12 @@ import { HomeComponent } from 'src/app/features/customer/home/home.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: '',
   },
 ];
 

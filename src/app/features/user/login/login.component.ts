@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     const emailRegEx: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
 
     this.loginForm = this.fb.group({
-      email: ['admin.kunjal@gmail.com', Validators.pattern(emailRegEx)],
+      email: ['customer.kunjal@gmail.com', Validators.pattern(emailRegEx)],
       password: [
         '123456',
         Validators.compose([
