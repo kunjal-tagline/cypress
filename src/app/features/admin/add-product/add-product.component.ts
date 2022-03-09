@@ -13,6 +13,7 @@ import {
   styleUrls: ['./add-product.component.scss'],
 })
 export class AddProductComponent implements OnInit {
+  public editProduct!: any;
   public categories: any[] = [
     {
       id: 'Ring',
@@ -45,7 +46,18 @@ export class AddProductComponent implements OnInit {
     productDetail: new FormControl(''),
   });
 
-  constructor(private fb: FormBuilder, private adminService: AdminService) {}
+  constructor(private fb: FormBuilder, private adminService: AdminService) {
+    const products: any = localStorage.getItem('productId');
+    this.editProduct = JSON.parse(products);
+    // console.log('obj :>> ', obj);
+    if(this.editProduct){
+      this.setProductValue()
+    }
+    // console.log(
+    //   'localStorage.getItem(productId) :>> ',
+    //   localStorage.getItem('productId')
+    // );
+  }
 
   ngOnInit(): void {
     this.addPoductForm = this.fb.group({
@@ -58,6 +70,19 @@ export class AddProductComponent implements OnInit {
     });
   }
 
+  /**
+   * setProductValue
+   */
+  public setProductValue() {
+    this.addPoductForm.setValue({
+      productName: this.editProduct.productName,
+      productPrice: this.editProduct.productPrice,
+      returnTime: this.editProduct.returnTime,
+      imagePath: this.editProduct.imagePath,
+      category: this.editProduct.category,
+      productDetail: this.editProduct.productDetail,
+    });
+  }
   public addProductSubmit(): void {
     this.adminService.addProduct(this.addPoductForm.value);
   }

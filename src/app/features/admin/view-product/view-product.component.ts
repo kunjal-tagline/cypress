@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AdminService } from './../../../shared/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class ViewProductComponent implements OnInit {
   public viewProductList: any = [];
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
     this.productListshow();
@@ -23,6 +24,7 @@ export class ViewProductComponent implements OnInit {
       this.viewProductList = res;
     });
   }
+
   /**
    * deleteProduct
    */
@@ -33,7 +35,10 @@ export class ViewProductComponent implements OnInit {
   /**
    * editProduct
    */
-  public editProduct(id:string):void {
-    
+
+  public editProduct(productDetails: any): void {
+    localStorage.setItem('productId',JSON.stringify(productDetails))
+    const id = productDetails.cartID;
+    this.router.navigate(['/admin/edit-product', id]);
   }
 }
