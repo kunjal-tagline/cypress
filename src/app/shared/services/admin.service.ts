@@ -10,10 +10,10 @@ export class AdminService {
   constructor(private db: AngularFireDatabase) {}
 
   public addProduct(productDetails: any) {
-    return new Promise((resolve,reject)=>{
-resolve( this.basePath.push(productDetails));
+    return new Promise((resolve, reject) => {
+      this.basePath.push(productDetails);
+      resolve(productDetails);
     });
-   
   }
 
   /**
@@ -33,13 +33,18 @@ resolve( this.basePath.push(productDetails));
     });
   }
 
-  public removeProductById(id: string): void {
-    const basePath = this.db.database.ref('/products/' + id);
-    basePath.remove();
+  public removeProductById(id: string) {
+    return new Promise((resolve, reject) => {
+      const basePath = this.db.database.ref('/products/' + id);
+      resolve(basePath.remove());
+    });
   }
 
-  public editProductById(id: string, productDetails: any): void {
-    const basePath = this.db.database.ref('/products/' + id);
-    basePath.update(productDetails);
+  public editProductById(id: string, productDetails: any) {
+    return new Promise((resolve, reject) => {
+      const basePath = this.db.database.ref('/products/' + id);
+      basePath.update(productDetails);
+      resolve(productDetails);
+    });
   }
 }

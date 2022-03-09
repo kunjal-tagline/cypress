@@ -7,24 +7,30 @@ import { ViewProductComponent } from 'src/app/features/admin/view-product/view-p
 
 const routes: Routes = [
   {
-    path: 'admin-dashboard',
+    path: '',
     component: AdminDashboardComponent,
-  },
-  {
-    path: 'add-product',
-    component: AddProductComponent,
-  },
-  {
-    path: 'view-product',
-    component: ViewProductComponent,
-  },
-  {
-    path: 'edit-product/:id',
-    component: EditProductComponent,
+    children:[
+      {
+        path: 'add-product',
+        component: AddProductComponent,
+      },
+      {
+        path: 'view-product',
+        component: ViewProductComponent,
+      },
+      {
+        path: 'edit-product/:id',
+        component: EditProductComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'add-product',
+      },
+    ]
   },
   {
     path: '**',
-    redirectTo: 'admin-dashboard',
+    redirectTo: '',
   },
 ];
 

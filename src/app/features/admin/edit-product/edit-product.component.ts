@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -41,17 +42,17 @@ export class EditProductComponent implements OnInit {
     productDetail: new FormControl(''),
   });
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
     const products: any = localStorage.getItem('productDataToken');
     this.editProduct = JSON.parse(products);
     if (this.editProduct) {
-      this.setProductValue();
+      this.setProductDefaultValue();
     }
   }
 
-  public setProductValue(): void {
+  public setProductDefaultValue(): void {
     this.editPoductForm.setValue({
       productName: this.editProduct.productName,
       productPrice: this.editProduct.productPrice,
@@ -64,6 +65,10 @@ export class EditProductComponent implements OnInit {
 
   public editProductSubmit(): void {
     const productIdGet = this.editProduct.cartId;
-    this.adminService.editProductById(productIdGet, this.editPoductForm.value);
+    this.adminService
+      .editProductById(productIdGet, this.editPoductForm.value)
+      .then((response: any) => {
+        this.router.navigate(['/admin/view-product']);
+      });
   }
 }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -45,7 +46,7 @@ export class AddProductComponent implements OnInit {
     productDetail: new FormControl(''),
   });
 
-  constructor(private fb: FormBuilder, private adminService: AdminService) {}
+  constructor(private fb: FormBuilder, private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
     this.addPoductForm = this.fb.group({
@@ -59,6 +60,10 @@ export class AddProductComponent implements OnInit {
   }
 
   public addProductSubmit(): void {
-    this.adminService.addProduct(this.addPoductForm.value);
+    this.adminService
+      .addProduct(this.addPoductForm.value)
+      .then((response: any) => {
+        this.router.navigate(['/admin/view-product']);
+      });
   }
 }
