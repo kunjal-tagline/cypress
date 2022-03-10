@@ -2,25 +2,12 @@
     <div class="col-sm-12">
         <div class="navbar navbar-expand-lg d-flex justify-content-around">
             <ul class="navbar-nav h5">
-                <li class="nav-item">
-                    <a class="nav-link me-5" routerLink="" routerLinkActive="">RINGS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-5" routerLink="" routerLinkActive="">EARRINGS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-5" routerLink="" routerLinkActive="">NACKLACES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-5" routerLink="" routerLinkActive="">BRACELETS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-5" routerLink="" routerLinkActive="">BANGLES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-5" routerLink="" routerLinkActive="">ANKLETS</a>
+                <li class="nav-item" *ngFor="let navItems of navbarList">
+                    <a class="nav-link me-5" routerLink="/customer/show-products"
+                        routerLinkActive="active">{{navItems.value}}</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+<router-outlet></router-outlet>
