@@ -45,6 +45,8 @@ export class LoginComponent implements OnInit {
         ]),
       ],
     });
+
+    localStorage.clear();
   }
 
   get email() {

@@ -1,4 +1,5 @@
-import { AdminService } from './../../../shared/services/admin.service';
+import { Router } from '@angular/router';
+import { AdminService } from 'src/app/shared/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowProductsComponent implements OnInit {
   public allJewelleryData: any = [];
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
     this.allJewelleryDataGet();
@@ -18,5 +19,10 @@ export class ShowProductsComponent implements OnInit {
     this.adminService.getProductList().then((response: any) => {
       this.allJewelleryData = response;
     });
+  }
+
+  public viewProductDetails(jewelleryItem: any): void {
+    localStorage.setItem('productDetailsById', JSON.stringify(jewelleryItem));
+    this.router.navigate(['customer/product-details']);
   }
 }

@@ -1,0 +1,16 @@
+<div class="row justify-content-center m-5">
+    <div class="col-sm-6">
+        <div class="card" *ngFor="let item of productDetailGet">
+            <div class="card-header">
+                <p>{{item.productName}}</p>
+            </div>
+            <div class="card-body">
+                <img class="card-img-top w-50" src={{item.imagePath}}>
+                <h5 class="card-title text-primary">{{item.productDetail}}</h5>
+                <p class="card-text">M.R.P: {{item.productPrice | currency:'INR'}}</p>
+                <p class="card-text">Return time: {{item.returnTime}} Day</p>
+                <a class="btn btn-primary">Add cart</a>
+            </div>
+        </div>
+    </div>
+</div>
