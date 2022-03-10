@@ -16,24 +16,24 @@ import {
 export class AddProductComponent implements OnInit {
   public categories: any[] = [
     {
-      id: 'Ring',
-      value: 'Ring',
+      id: 'ring',
+      value: 'ring',
     },
     {
-      id: 'Earing',
-      value: 'Earing',
+      id: 'earring',
+      value: 'earring',
     },
     {
-      id: 'Nacklace',
-      value: 'Nacklace',
+      id: 'necklace',
+      value: 'necklace',
     },
     {
-      id: 'Bracelet',
-      value: 'Bracelet',
+      id: 'bracelet',
+      value: 'bracelet',
     },
     {
-      id: 'Anklet',
-      value: 'Anklet',
+      id: 'anklet',
+      value: 'anklet',
     },
   ];
 

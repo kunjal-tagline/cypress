@@ -1,7 +1,10 @@
 <jewellery-shop-header></jewellery-shop-header>
 <div class="container-fluid pt-5">
   <jewellery-shop-customer-navbar></jewellery-shop-customer-navbar>
-  <div *ngIf="true">
+
+  <router-outlet></router-outlet>
+
+  <div *ngIf="isDisplayHome">
     <div class="row ">
       <div id="homeCarousel" class="carousel slide p-0" data-ride="carousel">
         <ol class="carousel-indicators">

@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from 'src/app/shared/services/customer.service';
 
 @Component({
   selector: 'jewellery-shop-show-products',
@@ -9,15 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowProductsComponent implements OnInit {
   public allJewelleryData: any = [];
-  constructor(private adminService: AdminService, private router: Router) {}
+  public filterJewelleryData: any = [];
+  public selectedCategory = '';
+
+  constructor(
+    private adminService: AdminService, 
+    private router: Router,
+    private customerService: CustomerService
+    ) {}
 
   ngOnInit(): void {
-    this.allJewelleryDataGet();
+    this.getAllJewellery();
+    this.changeSelectedCategory();
   }
 
-  public allJewelleryDataGet(): void {
-    this.adminService.getProductList().then((response: any) => {
-      this.allJewelleryData = response;
+  /**
+   * changeSelectedCategory
+   */
+  public changeSelectedCategory() {
+    this.customerService.selectedCategory$.subscribe((selectedCategory:string) => {
+      this.selectedCategory = selectedCategory;
+     if(selectedCategory === 'allJewellery') {
+      this.filterJewelleryData = this.allJewelleryData;
+     } else {
+       this.filterJewelleryData = this.allJewelleryData.filter((product:any)=> product.category === selectedCategory);
+     }
+    });    
+  }
+
+  public getAllJewellery(): void {
+    this.adminService.getProductList().then((productList: any) => {
+      this.allJewelleryData = productList;
+    this.changeSelectedCategory();
     });
   }
 

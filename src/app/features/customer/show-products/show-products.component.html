@@ -1,5 +1,5 @@
 <div class="row mt-1">
-    <div *ngFor="let jewelleryItem of allJewelleryData" class="col-sm-3 p-5">
+    <div *ngFor="let jewelleryItem of filterJewelleryData" class="col-sm-3 p-5">
         <div class="card align-self-stretch mt-2">
             <img class="card-img-top" src={{jewelleryItem.imagePath}} alt="Card image cap" data-bs-toggle="tooltip"
                 data-bs-placement="bottom" title="view details"  (click)="viewProductDetails(jewelleryItem)">
