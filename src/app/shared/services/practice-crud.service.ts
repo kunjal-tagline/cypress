@@ -5,13 +5,13 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
   providedIn: 'root',
 })
 export class PracticeCrudService {
-  public basePath = this.db.database.ref('/cart');
+  public basePath = this.db.database.ref('/practice');
 
   constructor(private db: AngularFireDatabase) {
     //this.createCartData();
-    this.getAllCarts();
+    //this.getAllCarts();
     //this.removeCartData();
-    this.updaterCartData();
+    //this.updaterCartData();
   }
 
   public createCartData(): void {
