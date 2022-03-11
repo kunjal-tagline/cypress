@@ -1,3 +1,4 @@
+import { AdminService } from 'src/app/shared/services/admin.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { BehaviorSubject } from 'rxjs';
@@ -8,12 +9,16 @@ import { BehaviorSubject } from 'rxjs';
 export class CartService {
   public customerId: any = localStorage.getItem('customerId');
   public cartArrayCheck: any = [];
+  public productId: any = this.cartArrayCheck.productId;
   public allCarts: any = [];
   public myCartList$: any = new BehaviorSubject([]);
 
   public basePath = this.db.database.ref('/cart');
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(
+    private db: AngularFireDatabase,
+    private adminService: AdminService
+  ) {}
 
   public productAddCart(cartData: any) {
     return new Promise((resolve, reject) => {
@@ -30,18 +35,15 @@ export class CartService {
     });
   }
 
-  /**
-   * updateCart
-   */
-  public updateCart() {
+  public updateCart(): void {
     const basePath = this.db.database.ref(
       '/cart/' + this.cartArrayCheck.cartId
     );
-    const data = {
+    const productInfo = {
       ...this.cartArrayCheck,
-      qty: this.cartArrayCheck.qty + 1,
+      quantity: this.cartArrayCheck.quantity + 1,
     };
-    basePath.update(data);
+    basePath.update(productInfo);
   }
 
   public checkCartProducts(productId: string, productData: any): void {
@@ -50,13 +52,13 @@ export class CartService {
       if (this.cartArrayCheck) {
         this.updateCart();
       } else {
-        const data = {
+        const productInfo = {
           customerId: this.customerId,
           productId: productId,
-          qty: 1,
+          quantity: 1,
         };
         this.getAllCarts();
-        this.productAddCart(data);
+        this.productAddCart(productInfo);
       }
     });
   }
@@ -75,7 +77,6 @@ export class CartService {
             (element: any) => element.customerId === this.customerId
           )
         );
-
         resolve(this.allCarts);
       });
     });
@@ -87,5 +88,38 @@ export class CartService {
         element.productId === productId &&
         element.customerId === this.customerId
     );
+  }
+
+  public removeProductFromCart(id: string) {
+    const basePath = this.db.database.ref('/cart/' + id);
+    return new Promise((resolve, reject) => {
+      basePath.remove();
+    });
+  }
+
+  public myCartProductDetails(): any {
+    return new Promise((resolve, reject) => {
+      let myTempCart: any[] = [];
+      this.getAllCarts();
+
+      this.myCartList$.subscribe((cart: any) => {
+        myTempCart = cart;
+      });
+
+      this.adminService.getProductList().then((allProducts: any) => {
+        let finalCart: any = [];
+        myTempCart.forEach((cartCheck: any) => {
+          const cartProducts = allProducts.filter(
+            (element: any) => element.cartId === cartCheck.productId
+          );
+          const data = {
+            cartProducts: cartProducts,
+            quantity: cartCheck.quantity,
+          };
+          finalCart.push(data);
+        });
+        resolve(finalCart);
+      });
+    });
   }
 }
