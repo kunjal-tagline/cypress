@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  public cartDataStore: any = [];
+  public cartList: any = [];
+
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
@@ -15,8 +16,9 @@ export class CartComponent implements OnInit {
   }
 
   public showCartProducts(): void {
-    this.cartService.getCartAllProducts().then((cartData: any) => {
-      this.cartDataStore = cartData;
+    this.cartService.getAllCarts();
+    this.cartService.myCartList$.subscribe((cartList: any) => {
+      this.cartList = cartList;
     });
   }
 }

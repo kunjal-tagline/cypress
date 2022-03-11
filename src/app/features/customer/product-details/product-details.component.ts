@@ -7,40 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements OnInit {
-  public productDetailGet: any = [];
-  public productsDetail: any = localStorage.getItem('productDetailsById');
   public customerId: any = localStorage.getItem('customerId');
-  public productData = JSON.parse(this.productsDetail);
-  public cartData = {
-    productName: this.productData.productName,
-    category: this.productData.category,
-    productPrice: this.productData.productPrice,
-    cartId: this.productData.cartId,
-    imagePath: this.productData.imagePath,
-    productDetail: this.productData.productDetail,
-    returnTime: this.productData.returnTime,
-    customerId: this.customerId,
-  };
+  public productDetails: any = [
+    JSON.parse(localStorage.getItem('productDetailsById') as any),
+  ];
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {
-    this.productDetailRetrive();
+  ngOnInit(): void {}
+
+  public addToCart(productId: any): void {
+    const data = {
+      customerId: this.customerId,
+      productId: productId,
+      qty: 1,
+    };
+    this.cartService.productAddCart(data).then(() => {});
   }
 
-  public productDetailRetrive(): void {
-    this.productDetailGet = [this.productData];
-  }
-
-  public addToCart(): void {
-    this.cartService.productAddCart(this.cartData).then(() => {});
-  }
-
-  public updateCart(id: string): void {
-    if (this.cartData.cartId === this.productData.cartId) {
-      this.cartService.updateCartProduct(id, this.cartData).then(() => {});
-    } else {
-      this.addToCart();
-    }
+  public submitCart(productId: string): void {
+    this.cartService.checkCartProducts(productId, this.productDetails);
   }
 }
