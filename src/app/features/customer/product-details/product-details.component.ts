@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -23,7 +22,7 @@ export class ProductDetailsComponent implements OnInit {
     customerId: this.customerId,
   };
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.productDetailRetrive();
@@ -33,7 +32,15 @@ export class ProductDetailsComponent implements OnInit {
     this.productDetailGet = [this.productData];
   }
 
-  public addToCart() {
+  public addToCart(): void {
     this.cartService.productAddCart(this.cartData).then(() => {});
+  }
+
+  public updateCart(id: string): void {
+    if (this.cartData.cartId === this.productData.cartId) {
+      this.cartService.updateCartProduct(id, this.cartData).then(() => {});
+    } else {
+      this.addToCart();
+    }
   }
 }

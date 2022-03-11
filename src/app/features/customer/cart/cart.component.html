@@ -1,0 +1,21 @@
+<div class="row col-sm-9 mt-4 ms-4">
+    <div class="card w-75 p-0">
+        <div class="card-header">
+            My cart
+        </div>
+        <div class="row mb-4" *ngFor="let item of cartDataStore">
+            <div class="col-sm-4">
+                <img src={{item.imagePath}} class="img-fluid rounded-start">
+            </div>
+            <div class="card-body col-sm-4">
+                <p class="card-title"><strong>Product name:&nbsp;</strong>{{item.productName}}</p>
+                <p class="card-title"><small class="text-muted">{{item.productDetail}}</small></p>
+                <p class="card-title"><small>Return eligible for&nbsp;{{item.returnTime}}&nbsp;days</small></p>
+            </div>
+            <div class="card-body col-sm-4">
+                <p class="card-title"><strong>Product price:&nbsp;</strong>{{item.productPrice | currency:'INR'}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

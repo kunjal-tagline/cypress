@@ -9,7 +9,7 @@
                 <h5 class="card-title text-primary mt-3">{{detailIteam.productDetail}}</h5>
                 <p class="card-text">M.R.P: {{detailIteam.productPrice | currency:'INR'}}</p>
                 <p class="card-text">Return time: {{detailIteam.returnTime}} Day</p>
-                <a class="btn btn-primary" (click)="addToCart()">Add cart</a>
+                <a class="btn btn-primary" (click)="updateCart(detailIteam.cartId)">Add cart</a>
             </div>
         </div>
     </div>
