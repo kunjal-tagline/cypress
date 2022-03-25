@@ -1,12 +1,14 @@
-<div class="row pt-5">
-    <div class="col-sm-12">
-        <div class="navbar navbar-expand-lg d-flex justify-content-around">
-            <ul class="navbar-nav h5 pt-2">
-                <li class="nav-item" *ngFor="let navItems of navbarList">
-                    <a class="nav-link me-4" (click)="navigateTo(navItems.id, navItems.redirectTo)"
-                        >{{navItems.value}}</a>
-                </li>
-            </ul>
+<div class="container-fluid p-0">
+    <div class="row pt-5">
+        <div class="col-sm-12 pt-2">
+            <div class="navbar navbar-expand-lg d-flex justify-content-around">
+                <ul class="navbar-nav h5 pt-2">
+                    <li class="nav-item" *ngFor="let navItems of navbarList">
+                        <a class="nav-link me-4" (click)="navigateTo(navItems.id, navItems.redirectTo)"
+                            >{{navItems.value}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

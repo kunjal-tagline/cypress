@@ -1,41 +1,32 @@
-<!-- <div class="container-fluid">
-    <div class="row">
-        <div class="d-flex justify-content-around col-sm-3 header">
-            <button class="" routerLink="/admin/add-product">
-                add product
-            </button>
-            <button class="" routerLink="/admin/view-product">
-                View product
-            </button>
-        </div>
-    </div>
-
-<router-outlet></router-outlet>
-
-</div> -->
 <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12 p-0">
-        <div class="navbar navbar-expand-lg navbar-light background fixed-top">
-          <div class="navbar-brand ms-3 col-sm-10">
-            Admin Dashboard
+        <div class="navbar navbar-expand-lg navbar-light background bg-secondary">
+          <div class="navbar-brand ms-3 col-sm-9 text-warning">
+           <h3>Admin Dashboard</h3> 
           </div>
-          <div class="col-sm-2 text-center">
+          <div class="col-sm-3 text-center">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" routerLink="">
+                <a class="nav-link" routerLink="/admin/add-product" style="color: white;">
                     Add Products
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="">
+                <a class="nav-link" routerLink="/admin/view-product" style="color: white;">
                     View Products
                 </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/user/login">
+                    <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i >
+                  </a>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+    <router-outlet></router-outlet>
   </div>
   
