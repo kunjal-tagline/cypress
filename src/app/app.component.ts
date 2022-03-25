@@ -9,7 +9,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'jewellery-shop';
 
-  constructor(private practiceCrudService: PracticeCrudService) {
-    this.practiceCrudService;
-  }
+  constructor() {}
 }

@@ -3,9 +3,8 @@
   <jewellery-shop-customer-navbar></jewellery-shop-customer-navbar>
 
   <router-outlet></router-outlet>
-
   <div *ngIf="isDisplayHome">
-    <div class="row ">
+    <div class="row p-0">
       <div id="homeCarousel" class="carousel slide p-0" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
@@ -33,57 +32,31 @@
         </a>
       </div>
     </div>
-    <p class="text-center mt-5 h4">SHOP BY CATEGORY</p>
-    <hr>
-    <div class="row mt-5">
-      <div class="d-flex justify-content-around">
-        <div class="card col-sm-3">
-          <img class="card-img-top" src="assets/customer-home/ring.png" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text text-center h3 text-secondary">RINGS</p>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-sm-9 p-5">
+          <p class="text-color">Jewellery is available to all</p>
+          <div class="row">
+            <div class="col-sm-4">
+              <img class="w-75" src="/assets/customer-home/home3.jpg" alt="">
+            </div>
+            <div class="col-sm-8 h4 text-secondary">
+              Jewels of gold of various colors and patterns, decorated with precious stones, give your image a unique morden style. Courage, and it is much more than you know. Our jewellery will complement any outfit.
+            </div>
           </div>
+         <div class="text-secondary pt-2 h5">Set with obesity and rings of delicate colors of variuos designs and small rivets with rhinestones. It can be worn both at the entrance to serious event.</div>
         </div>
-        <div class="card col-sm-3">
-          <img class="card-img-top" src="assets/customer-home/earring.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text text-center h3 text-secondary">EARRINGS</p>
-          </div>
-        </div>
-        <div class="card col-sm-3">
-          <img class="card-img-top" src="assets/customer-home/nacklace.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text text-center h3 text-secondary">NACKLACES</p>
-          </div>
+        <div class="col-sm-3 pt-5">
+    <img class="w-75" src="/assets/customer-home/home1.jpg" alt="">
+    <img class="w-75" src="/assets/customer-home/home2.jpg" alt="">
+   
         </div>
       </div>
+    </div>
+  
 
-      <div>
-      </div>
-    </div>
-    <div class="row mt-5">
-      <div class="d-flex justify-content-around">
-        <div class="card col-sm-3">
-          <img class="card-img-top" src="assets/customer-home/ankle.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text text-center h3 text-secondary">ANKLETS</p>
-          </div>
-        </div>
-        <div class="card col-sm-3">
-          <img class="card-img-top" src="assets/customer-home/bangle.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text text-center h3 text-secondary">BANGLES</p>
-          </div>
-        </div>
-        <div class="card col-sm-3">
-          <img class="card-img-top" src="assets/customer-home/bracelet.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text text-center h3 text-secondary">BRACELETS</p>
-          </div>
-        </div>
-      </div>
-      <div>
-      </div>
-    </div>
+    
   </div>
 </div>
+
 <jewellery-shop-footer></jewellery-shop-footer>

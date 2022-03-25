@@ -3,7 +3,8 @@
         <div class="card-header">
             My cart
         </div>
-        <div class="row mb-4" *ngFor="let cart of cartList">
+        <div class="row mb-4" *ngFor="let cart of cartProductDetail,let i=index ">
+            {{cart.cardProducts}}
             <div class="col-sm-3 d-flex">
                 <button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 <input class="form-control text-center" readonly value="{{cart.quantity}}">
