@@ -3,17 +3,33 @@
         <div class="card-header">
             My cart
         </div>
-        <div class="row mb-4" *ngFor="let cart of cartProductDetail,let i=index ">
-            {{cart.cardProducts}}
-            <div class="col-sm-3 d-flex">
-                <button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                <input class="form-control text-center" readonly value="{{cart.quantity}}">
-                <button class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        <div class="row mb-4 p-5" *ngFor="let cart of cartProductDetail,let i=index">
+            <div class="col-sm-3">
+                <img class="w-75" src={{cart.cartProducts.imagePath}}>
+                <div class="d-flex mt-2">
+                    <button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <input class="form-control text-center" readonly value="{{cart.quantity}}">
+                    <button class="btn btn-danger" (click)="minusQuantity(cart.cartProducts.cartId)"><i
+                            class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
             </div>
-            <div class="col-sm-1">
-                <button class="btn btn-danger " (click)="removeProduct(cart.cartId)">
-                    Remove
-                </button>
+            <div class="col-sm-5">
+                <h3>
+                    {{cart.cartProducts.productName}}
+                </h3>
+                <small>
+                    {{cart.cartProducts.productDetail}}
+                </small>
+                <p class="mt-3"> <span class="text-primary">Price:</span>&nbsp;{{cart.cartProducts.productPrice |
+                    currency:'INR'}}</p>
+            </div>
+            <div class="col-sm-4">
+                Return allow within {{cart.cartProducts.returnTime}} Days
+                <div class="">
+                    <button class="btn btn-danger " (click)="removeProduct(cart.cartId)">
+                        Remove
+                    </button>
+                </div>
             </div>
         </div>
     </div>

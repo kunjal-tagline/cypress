@@ -109,13 +109,15 @@ export class CartService {
       this.adminService.getProductList().then((allProducts: any) => {
         let finalCart: any = [];
         myTempCart.forEach((cartCheck: any) => {
-          const cartProducts = allProducts.filter(
+          const cartProducts = allProducts.find(
             (element: any) => element.cartId === cartCheck.productId
           );
           const data = {
             cartProducts: cartProducts,
             quantity: cartCheck.quantity,
+            cartId: cartCheck.cartId,
           };
+          //console.log('data :>> ', data);
           finalCart.push(data);
         });
         resolve(finalCart);
