@@ -12,6 +12,7 @@ export class CartService {
   public productId: any = this.cartArrayCheck.productId;
   public allCarts: any = [];
   public myCartList$: any = new BehaviorSubject([]);
+  public hideHomeSubject = new BehaviorSubject<boolean>(false);
 
   public basePath = this.db.database.ref('/cart');
 

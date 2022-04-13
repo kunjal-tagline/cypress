@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.showCartProducts();
     this.cartProductInfo();
+    this.cartService.hideHomeSubject.next(false);
   }
 
   public showCartProducts(): void {
@@ -35,5 +36,9 @@ export class CartComponent implements OnInit {
   public removeProduct(cartId: string): void {
     this.cartService.removeProductFromCart(cartId).then(() => {});
     this.cartProductInfo();
+  }
+
+  ngOnDestroy(): void {
+    this.cartService.hideHomeSubject.next(true);
   }
 }
