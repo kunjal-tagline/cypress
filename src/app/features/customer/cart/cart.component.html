@@ -7,9 +7,9 @@
             <div class="col-sm-3">
                 <img class="w-75" src={{cart.cartProducts.imagePath}}>
                 <div class="d-flex mt-2">
-                    <button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button class="btn btn-success" (click)="quantityPlus(cart.cartProducts.cartId)"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     <input class="form-control text-center" readonly value="{{cart.quantity}}">
-                    <button class="btn btn-danger" (click)="minusQuantity(cart.cartProducts.cartId)"><i
+                    <button class="btn btn-danger"><i
                             class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import { CartService } from 'src/app/shared/services/cart.service';
 import { Component, OnInit } from '@angular/core';
+import { analyticsInstanceFactory } from '@angular/fire/analytics/analytics.module';
 
 @Component({
   selector: 'jewellery-shop-cart',
@@ -30,7 +31,42 @@ export class CartComponent implements OnInit {
     });
   }
 
-  public minusQuantity(productId: any) {}
+  public quantityMinus(productId: any) {}
+
+  public quantityPlus(cartId: any) {
+    let productDetails: any = {};
+    this.cartProductDetail.forEach((res: any) => {
+      //console.log('res :>> ', res.cartProducts.cartId);
+      //console.log('cartId :>> ', cartId);
+      if (res.cartProducts.cartId == cartId) {
+        //console.log('cartId :>> ', cartId);
+        productDetails={
+        ...res,
+        quantity: res.quantity + 1
+       };
+        //console.log('data :>> ', productDetails);
+        //console.log('res :>> ', res);
+        this.cartService.updateCartqty(cartId, productDetails).then(() => {
+          this.cartProductInfo();
+       });
+      }
+    });
+  }
+  // public qtyPlus(id: any) {
+  //   let data: any = {};
+  //   this.allCartItems.forEach((res) => {
+  //     if (res.cartId === id) {
+  //       data = {
+  //         ...res,
+  //         qty: res.qty + 1
+  //       }
+  //       this.cartService.updateCartqty(id, data).then(() => {
+  //         this.getAllCarts();
+  //       });
+  //     }
+  //   })
+  // }
+
 
   public removeProduct(cartId: string): void {
     this.cartService.removeProductFromCart(cartId).then(() => {});

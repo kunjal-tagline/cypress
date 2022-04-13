@@ -27,7 +27,7 @@ export class CartService {
     });
   }
 
-  public updateCartProduct(cartId: string, productDetails: any) {
+  public updateCartProduct(cartId: any, productDetails: any) {
     return new Promise((resolve, reject) => {
       const basePath = this.db.database.ref('/cart/' + cartId);
       basePath.update(productDetails);
@@ -46,6 +46,13 @@ export class CartService {
     basePath.update(productInfo);
   }
 
+  public updateCartqty(id: any, cartProductDetails: any): any {
+    return new Promise((resolve, reject) => {
+      const basePath = this.db.database.ref('/carts/' + id);
+      basePath.update(cartProductDetails);
+      resolve(true);
+    });
+  }
   public checkCartProducts(productId: string, productData: any): void {
     this.getAllCarts().then(() => {
       this.findUpdateCart(productId);
